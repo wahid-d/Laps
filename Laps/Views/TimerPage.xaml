@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:Laps.ViewModels"    
+    x:Class="Laps.Views.TimerPage">
+
+    <ContentPage.BindingContext>
+        <viewModels:TimerPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="1,1">
+            <GradientStop Color="{StaticResource bg-gradient-start}"
+                          Offset="0.1"/>
+            <GradientStop Color="{StaticResource bg-gradient-end}"
+                          Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid RowDefinitions="*, *">
+
+        <Grid RowDefinitions="auto, auto, auto, auto" RowSpacing="0"
+              ColumnDefinitions=" 3*, *" VerticalOptions="Center" Margin="30">
+
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding TimerGridTappedCommand}"/>
+            </Grid.GestureRecognizers>
+
+            <Label Grid.Row="2" Grid.Column="1"
+                   FontSize="120" Opacity=".3"
+                   Text="s"  Margin="0, -20"/>
+
+            <Label Grid.Row="3" Grid.Column="1"
+                   FontSize="48" Opacity=".3"
+                   Text="ms"/>
+
+            <!-- Actual timer data -->
+
+            <Label Grid.Row="2" Grid.Column="0" Margin="0, -20"
+                   FontSize="120" HorizontalTextAlignment="End"
+                   Text="{Binding SecondsLapsed}"/>
+
+            <Label Grid.Row="3" Grid.Column="0"
+                   FontSize="48" HorizontalTextAlignment="End"
+                   Text="{Binding MilliSecondsLapsed}"/>
+
+        </Grid>
+
+        <StackLayout Grid.Row="1">
+
+        </StackLayout>
+    </Grid>
+
+</ContentPage>
